@@ -37,6 +37,7 @@ public class DashedBoxOptions {
                     Scanner firstScan = new Scanner(System.in);
                     System.err.println("How many shares would you like to buy?");
                     double shares = scanner.nextDouble();
+
                     Scanner secondScan = new Scanner(System.in);
                     System.err.println("How much is each share?");
                     double price = scanner.nextDouble();
@@ -68,14 +69,15 @@ public class DashedBoxOptions {
                     if (shares > shareDouble) {
                         System.err.println("You are trying to sell " + shares + " shares and you only have " + shareDouble + " shares.");
                         dashedBox.displayOptionsInBox(options);
+                    } else {
+                        Scanner secondScan = new Scanner(System.in);
+                        System.out.println("How much are you selling each share?");
+                        double price = scanner.nextDouble();
+                        company.sell(shares, price);
+                        String totalShares = company.getShares();
+                        System.out.println("Your capital is now: " + totalShares);
+                        break;
                     }
-                    Scanner secondScan = new Scanner(System.in);
-                    System.out.println("How much are you selling each share?");
-                    double price = scanner.nextDouble();
-                    company.sell(shares, price);
-                    String totalShares = company.getShares();
-                    System.out.println("Your capital is now: " + totalShares);
-                    break;
                 }
                 default:
                     break;
