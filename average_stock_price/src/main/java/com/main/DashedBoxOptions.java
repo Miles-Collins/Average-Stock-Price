@@ -57,13 +57,18 @@ public class DashedBoxOptions {
                 }
                 case 2: {
                     String s = company.getShares();
-                    if (Double.parseDouble(s) >= 0) {
+                    Double shareDouble = Double.valueOf(s);
+                    if (shareDouble <= 0) {
                         System.err.println("Sorry, you do not have any shares to sell!");
-                        break OUTER;
+                        continue;
                     }
                     Scanner firstScan = new Scanner(System.in);
                     System.out.println("How many shares would you like to sell?");
                     double shares = scanner.nextDouble();
+                    if (shares > shareDouble) {
+                        System.err.println("You are trying to sell " + shares + " shares and you only have " + shareDouble + " shares.");
+                        dashedBox.displayOptionsInBox(options);
+                    }
                     Scanner secondScan = new Scanner(System.in);
                     System.out.println("How much are you selling each share?");
                     double price = scanner.nextDouble();
